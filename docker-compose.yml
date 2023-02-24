@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+
+  database:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      # only local password can be stored here, all secrets should be stored in another place
+      POSTGRES_PASSWORD: mysecretpassword
