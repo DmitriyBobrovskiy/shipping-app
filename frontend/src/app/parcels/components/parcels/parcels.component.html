@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="d-flex my-4">
+
+  </div>
   <div class="d-flex flex-row-reverse my-4">
     <button type="button" class="btn btn-primary float-right" (click)="openModalWithComponent()">
       Create parcel
@@ -17,7 +20,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let parcel of parcels | sortByOrder">
+    <tr *ngFor="let parcel of parcels | sortByOrder | sortByDeliveryDate">
       <th scope="row">{{ parcel.sku }}</th>
       <td>{{ parcel.country}}</td>
       <td>{{ parcel.town}}</td>

@@ -9,12 +9,14 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker'
 import { ParcelsComponent } from './components/parcels/parcels.component';
 import { AddParcelComponent } from './components/add-parcel/add-parcel.component';
 import { SortByOrderPipe } from "./sort-by-order.pipe";
+import { SortByDeliveryDatePipe } from './sort-by-delivery-date.pipe';
 
 @NgModule({
   declarations: [
     ParcelsComponent,
     AddParcelComponent,
     SortByOrderPipe,
+    SortByDeliveryDatePipe,
   ],
   imports: [
     CommonModule,
