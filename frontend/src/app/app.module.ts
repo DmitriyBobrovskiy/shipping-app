@@ -3,16 +3,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ParcelsComponent } from './parcels/components/parcels/parcels.component';
+import { ParcelsModule } from './parcels/parcels.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ParcelsComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ParcelsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
