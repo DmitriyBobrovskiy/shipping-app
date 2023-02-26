@@ -1,6 +1,31 @@
-<button type="button" class="btn btn-primary" (click)="openModalWithComponent()">Create parcel</button>
-<ul class="list-group">
-  <li *ngFor="let parcel of parcels" class="list-group-item">
-    {{ parcel.sku }}
-  </li>
-</ul>
+<div class="container">
+  <div class="d-flex flex-row-reverse my-4">
+    <button type="button" class="btn btn-primary float-right" (click)="openModalWithComponent()">
+      Create parcel
+    </button>
+  </div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">SKU</th>
+      <th scope="col">Country</th>
+      <th scope="col">Town</th>
+      <th scope="col">Address</th>
+      <th scope="col">Delivery date</th>
+      <th scope="col">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let parcel of parcels | sortByOrder">
+      <th scope="row">{{ parcel.sku }}</th>
+      <td>{{ parcel.country}}</td>
+      <td>{{ parcel.town}}</td>
+      <td>{{ parcel.streetAddress}}</td>
+      <td>{{ parcel.deliveryDate | date:'shortDate' }}</td>
+      <td class="description-width">{{ parcel.description}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
