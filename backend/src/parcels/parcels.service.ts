@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { Repository } from 'typeorm';
+
 import { Parcel } from './parcel.entity';
 
 @Injectable()
@@ -15,11 +17,7 @@ export class ParcelsService {
   }
 
   // TODO: there might be SQL injections, should be checked
-  async getAll(
-    country?: string,
-    description?: string,
-    sku?: string,
-  ): Promise<Parcel[]> {
+  async getAll(country?: string, description?: string): Promise<Parcel[]> {
     let query = this.parcelRepository.createQueryBuilder('parcel');
     if (country) {
       query = query.where('LOWER(parcel.country) = LOWER(:country)', {
@@ -34,11 +32,20 @@ export class ParcelsService {
         },
       );
     }
-    if (sku) {
-      query = query.where('LOWER(parcel.sku) = LOWER(:sku)', {
-        sku: `${sku}`,
-      });
-    }
     return query.getMany();
+  }
+
+  async getBySku(sku?: string): Promise<Parcel> {
+    let query = this.parcelRepository.createQueryBuilder('parcel');
+    query = query.where('LOWER(parcel.sku) = LOWER(:sku)', {
+      sku: `${sku}`,
+    });
+    const result = await query.getMany();
+    if (result.length > 1) {
+      throw new Error(
+        'More than one parcel was found, that should not have happened',
+      );
+    }
+    return result[0];
   }
 }

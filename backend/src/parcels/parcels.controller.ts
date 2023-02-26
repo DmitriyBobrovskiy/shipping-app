@@ -5,6 +5,7 @@ import {
   Get,
   Query,
   BadRequestException,
+  Param,
 } from '@nestjs/common';
 import { QueryFailedError } from 'typeorm';
 import { DatabaseError } from 'pg-protocol';
@@ -33,8 +34,12 @@ export class ParcelsController {
   async getParcels(
     @Query('country') country: string,
     @Query('description') description: string,
-    @Query('sku') sku: string,
   ): Promise<Parcel[]> {
-    return await this.parcelsService.getAll(country, description, sku);
+    return await this.parcelsService.getAll(country, description);
+  }
+
+  @Get(':sku')
+  async getBySku(@Param() params): Promise<Parcel> {
+    return await this.parcelsService.getBySku(params.sku);
   }
 }

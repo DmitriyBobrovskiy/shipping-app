@@ -1,12 +1,58 @@
+
 <div class="modal-header">
   <h4 class="modal-title pull-left">Create parcel</h4>
-  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+  <button type="button" class="btn-close close pull-right" aria-label="Close"
+          (click)="bsModalRef.hide()">
     <span aria-hidden="true" class="visually-hidden">&times;</span>
   </button>
 </div>
+
 <div class="modal-body">
-  <p>add-parcel works!</p>
+
+    <div class="input-group has-validation mb-3">
+      <span class="input-group-text">SKU</span>
+      <input type="text" class="form-control" placeholder="ABC123"
+             [ngClass]="{ 'is-invalid': skuError }"
+             [(ngModel)]="sku" (focusout)="skuFocusOut()" required>
+      <div class="invalid-feedback" *ngIf="skuError">{{ skuError }}</div>
+    </div>
+
+  <div class="input-group mb-3">
+    <label class="input-group-text" for="inputGroupSelect01">Country</label>
+    <select class="form-select" id="inputGroupSelect01" [(ngModel)]="country">
+      <option value="-1" selected>Select country...</option>
+      <option *ngFor="let optionCountry of countries" value="{{optionCountry}}">{{ optionCountry }}</option>
+    </select>
+  </div>
+
+  <div class="input-group mb-3 has-validation mt-3">
+    <span class="input-group-text">Street</span>
+    <input type="text" class="form-control" [(ngModel)]="street" required>
+  </div>
+
+  <div class="input-group has-validation mb-3">
+    <span class="input-group-text">Town</span>
+    <input type="text" class="form-control" [(ngModel)]="town" required>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text">Delivery date</span>
+    <input type="text" placeholder="Delivery date" class="form-control"
+           [bsValue]="deliveryDate" [(ngModel)]="deliveryDate" bsDatepicker>
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-text">Parcel description</span>
+    <textarea class="form-control" [(ngModel)]="description"></textarea>
+  </div>
+
 </div>
+
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+  <button type="button" class="btn btn-primary"
+          (click)="createParcel()">Create parcel
+  </button>
+  <button type="button" class="btn btn-default"
+          (click)="bsModalRef.hide()">Cancel
+  </button>
 </div>

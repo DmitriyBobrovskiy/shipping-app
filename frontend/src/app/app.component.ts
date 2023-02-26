@@ -13,7 +13,8 @@ export class AppComponent implements OnInit {
   constructor(private parcelsService: ParcelsService) {}
 
   ngOnInit(): void {
-      this.parcelsService.getParcels()
-        .subscribe(parcels => this.parcels = parcels);
+    this.parcelsService.parcels
+      .subscribe(parcels => this.parcels = parcels);
+    this.parcelsService.updateParcels();
   }
 }
