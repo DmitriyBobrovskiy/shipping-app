@@ -6,10 +6,31 @@ This app consists of two apps - backend written on NodeJs + NestJs and frontend 
 
 ## How to run
 
+### Using docker compose
+
 This app has docker compose support, so to run it, just execute
 ```bash
 cd <project_root>
 docker compose up --build
+```
+
+### Locally
+
+Open `./backend/src/app.module.ts` and change host from `database` to `localhost`.
+
+And then:
+```bash
+docker compose up database
+```
+
+```bash
+cd <project_root>/backend
+npm run start:dev
+```
+
+```bash
+cd <project_root>/frontend
+ng serve
 ```
 
 ## Considerations
