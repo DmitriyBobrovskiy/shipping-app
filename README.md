@@ -25,11 +25,13 @@ docker compose up database
 
 ```bash
 cd <project_root>/backend
+npm install
 npm run start:dev
 ```
 
 ```bash
 cd <project_root>/frontend
+npm install
 ng serve
 ```
 
