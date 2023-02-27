@@ -35,6 +35,12 @@ npm install
 ng serve
 ```
 
+### Running
+
+Then go to http://localhost:8080.
+
+If by some reason you need API - it's running on http://localhost:3000.
+
 ## Considerations
 
 Before going to production they should be fixed.
