@@ -10,7 +10,7 @@ import { ParcelsModule } from './parcels/parcels.module';
     TypeOrmModule.forRoot({
       type: 'postgres',
       // if running locally, then host should be localhost
-      host: 'localhost',
+      host: 'database',
       port: 5432,
       username: 'postgres',
       password: 'mysecretpassword',
