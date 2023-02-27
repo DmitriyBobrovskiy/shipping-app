@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import * as countries from "country-list";
 import { ParcelsService } from "../../services/parcels.service";
 import { Parcel } from "../../models/parcel.entity";
 
@@ -20,7 +19,7 @@ export class AddParcelComponent {
   country: string = "";
   deliveryDate: Date = new Date();
 
-  readonly countries: string[] = countries.getNames();
+  @Input() countries: string[] = [];
 
 
   constructor(public bsModalRef: BsModalRef,

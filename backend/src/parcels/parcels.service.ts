@@ -18,14 +18,17 @@ export class ParcelsService {
 
   // TODO: there might be SQL injections, should be checked
   async getAll(country?: string, description?: string): Promise<Parcel[]> {
-    let query = this.parcelRepository.createQueryBuilder('parcel');
+    let query = this.parcelRepository
+      .createQueryBuilder('parcel')
+      .where('1 = 1');
+
     if (country) {
-      query = query.where('LOWER(parcel.country) = LOWER(:country)', {
+      query = query.andWhere('LOWER(parcel.country) = LOWER(:country)', {
         country: `${country}`,
       });
     }
     if (description) {
-      query = query.where(
+      query = query.andWhere(
         'LOWER(parcel.description) LIKE LOWER(:description)',
         {
           description: `%${description}%`,

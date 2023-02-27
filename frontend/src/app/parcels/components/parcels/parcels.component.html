@@ -1,9 +1,28 @@
 <div class="container">
-  <div class="d-flex my-4">
 
-  </div>
-  <div class="d-flex flex-row-reverse my-4">
-    <button type="button" class="btn btn-primary float-right" (click)="openModalWithComponent()">
+  <div class="d-flex my-4">
+    <div class="d-flex flex-grow-1">
+      <button type="button" class="btn btn-outline-secondary" (click)="showFilters = !showFilters">
+        <i *ngIf="!loading" class="bi bi-funnel-fill"></i>
+        <i *ngIf="loading" class="bi bi-arrow-repeat"></i>
+      </button>
+      <div class="d-flex" *ngIf="showFilters">
+        <div class="input-group px-1">
+          <select class="form-select" [selectedIndex]="1" [(ngModel)]="country">
+            <option selected>{{ countryLabel }}</option>
+            <option *ngFor="let optionCountry of countries"
+                    value="{{optionCountry}}">{{ optionCountry }}</option>
+          </select>
+        </div>
+
+        <div class="input-group ">
+          <input type="text" class="form-control" placeholder="Description" [(ngModel)]="description">
+        </div>
+        <button type="button" class="btn btn-outline-secondary mx-2" (click)="filter()">Search</button>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="openModalWithComponent()">
       Create parcel
     </button>
   </div>
@@ -20,7 +39,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let parcel of parcels | sortByOrder | sortByDeliveryDate">
+    <tr *ngFor="let parcel of parcels | sortByDeliveryDate | sortByOrder ">
       <th scope="row">{{ parcel.sku }}</th>
       <td>{{ parcel.country}}</td>
       <td>{{ parcel.town}}</td>

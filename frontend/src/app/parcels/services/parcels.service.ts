@@ -15,11 +15,8 @@ export class ParcelsService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getParcels(): Observable<Parcel[]>{
-    let url = this.url;
-    // if (sku) {
-    //   url += `?sku=${sku}`
-    // }
+  getParcels(country : string = '', description: string = ''): Observable<Parcel[]>{
+    let url = `${this.url}?country=${country}&description=${description}`;
     return this.httpClient.get<Parcel[]>(url);
   }
 
